@@ -15,8 +15,8 @@ public class Servidor {
 		StringBuffer palavraTemp = trocaLetras(palavracorreta); // palavra temporária
 		
 		try {
-			ServerSocket servidor = new ServerSocket(3150);
-			System.out.println("Servidor rodando. Aguardando conexão...");
+			ServerSocket servidor = new ServerSocket(6100);
+			System.out.println("Servidor rodando. Aguardando conexao...");
 			Socket socket = servidor.accept();
 			System.out.println("Conectado a - " + socket.getInetAddress() + ":" + socket.getPort());
 			
@@ -30,23 +30,24 @@ public class Servidor {
 				if (temLetra(palavracorreta, chute)) {
 					palavraTemp = colocaLetraCerta(palavracorreta, palavraTemp, chute); 
 					acertos++;
-					out.writeUTF("Palavra: " + palavraTemp + "\nDigite uma letra: ");
 					
 					if(acertos == (palavracorreta.length()-1)){
-						out.writeUTF("Parabéns! Você acertou! Palavra certa: " + palavracorreta + ".");
+						out.writeUTF("Parabens! Voce acertou! Palavra certa: " + palavracorreta + ".");
 						break;
 					}
+					
+					out.writeUTF("Palavra: " + palavraTemp + "\nDigite uma letra: ");
 				}
 				else{
 					chances--;
-					out.writeUTF("A palavra não tem essa letra! Tente novamente... (chances: " + chances + ")"
-								+ "\nPalavra: " + palavraTemp + "\nDigite uma letra:");
-					
 					
 					if(chances < 1){
-						out.writeUTF("Você perdeu! A palavra certa era: " + palavracorreta);
+						out.writeUTF("Voce perdeu! A palavra certa era: " + palavracorreta);
 						break;
 					}
+					
+					out.writeUTF("A palavra nao tem essa letra! Tente novamente... (chances: " + chances + ")"
+								+ "\nPalavra: " + palavraTemp + "\nDigite uma letra:");
 				}
 				
 				chute = in.readUTF(); // lendo o chute do jogador

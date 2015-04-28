@@ -12,7 +12,7 @@ public class Cliente {
 		String chute;
 		
 		try {
-			Socket socket = new Socket("localhost", 3150);
+			Socket socket = new Socket("localhost", 6100);
 			
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
@@ -22,7 +22,6 @@ public class Cliente {
 				chute = s.nextLine();
 				out.writeUTF(chute);
 			}
-			
 			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
