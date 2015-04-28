@@ -26,7 +26,11 @@ public class Servidor {
 			out.writeUTF("Palavra: " + palavraTemp +"\nDigite uma letra:");	// enviando a palavra em asteriscos para o jogador]
 			chute = in.readUTF();
 			
-			do{				
+			do{	
+				if(chute.equals("bye")){
+					break;
+				}
+				
 				if (temLetra(palavracorreta, chute)) {
 					palavraTemp = colocaLetraCerta(palavracorreta, palavraTemp, chute); 
 					acertos++;
